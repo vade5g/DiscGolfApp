@@ -15,55 +15,68 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:layout_gravity="center_vertical"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            android:layout_gravity="center_vertical" />
 
     </TableRow>
 
-    <TableRow>
+    <TableRow
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_width="wrap_content">
+        >
 
         <Button
             android:id="@+id/buttonMinus1"
-            android:layout_width="49dp"
-            android:layout_height="34dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
             android:layout_column="1"
             android:onClick="onClickMinusButton"
-            android:text="-"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/Score1TW"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            android:text="-" />
 
         <TextView
             android:id="@+id/Score1TW"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
             android:layout_column="2"
-            android:layout_gravity="center"
-            android:text="Score"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/buttonPlus1"
-            app:layout_constraintStart_toEndOf="@+id/buttonMinus1"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.0" />
+            android:text="Score" />
 
         <Button
             android:id="@+id/buttonPlus1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_column="3"
+            android:onClick="onClickPlusButton"
+            android:text="+" />
+    </TableRow>
+    <TableRow>
+        <Button
+            android:id="@+id/buttonMinus2"
+            android:layout_width="49dp"
+            android:layout_height="34dp"
+            android:layout_column="1"
+            android:onClick="onClickMinusButton"
+            android:text="-"
+            />
+
+        <TextView
+            android:id="@+id/Score2TW"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_column="2"
+            android:layout_gravity="center"
+            android:text="Score" />
+
+        <Button
+            android:id="@+id/buttonPlus2"
             android:layout_width="51dp"
             android:layout_height="33dp"
             android:layout_column="3"
             android:layout_gravity="center"
             android:onClick="onClickPlusButton"
-            android:text="+"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/Score1TW"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.0" />
-
+            android:text="+"/>
     </TableRow>
 
 

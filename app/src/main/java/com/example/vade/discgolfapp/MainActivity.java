@@ -88,7 +88,7 @@ public class MainActivity extends AppCompatActivity {
         course activeCourse = new course(dbCourse.name,dbCourse.parNumber,dbCourse.holesNumber,listHoles);
 
         String testString = activeCourse.getHoles().toString();
-        testTextView.setText(activeCourse.getName()+ " " + activeCourse.getParScore() + " " + testString);
+        testTextView.setText(activeCourse.getName()+ " " + activeCourse.getParScore());
 
         StringBuilder sB = new StringBuilder();
         sB.append(String.format(Locale.ENGLISH,
