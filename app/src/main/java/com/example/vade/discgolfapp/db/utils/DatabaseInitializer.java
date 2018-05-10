@@ -109,12 +109,6 @@ public class DatabaseInitializer {
         }
     }
 
-    private static Date getTodayPlusDays(int daysAgo) {
-        Calendar calendar = Calendar.getInstance();
-        calendar.add(Calendar.DATE, daysAgo);
-        return calendar.getTime();
-    }
-
     private static class PopulateDbAsync extends AsyncTask<Void, Void, Void> {
 
         private final AppDatabase mDb;

@@ -33,7 +33,6 @@ import java.util.Date;
         @ForeignKey(entity = Player.class,
                 parentColumns = "id",
                 childColumns = "player_id")})
-@TypeConverters(DateConverter.class)
 public class Game {
     // Fields can be public or private with getters and setters.
     @PrimaryKey

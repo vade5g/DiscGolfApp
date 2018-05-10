@@ -2,6 +2,7 @@ package com.example.vade.discgolfapp;
 
 import android.app.Application;
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -33,34 +34,16 @@ public class MainActivity extends AppCompatActivity {
     private static List<game> games;
     private static List<course> courses;
 
-    //TextViews
-
-    private TextView scoreTW1;
-    private TextView scoreTW2;
-    private TextView scoreTW3;
-    private TextView scoreTW4;
-    private TextView scoreTW5;
-    private TextView scoreTW6;
-    private TextView scoreTW7;
-    private TextView scoreTW8;
-    private TextView scoreTW9;
-    private TextView scoreTW10;
-    private TextView scoreTW11;
-    private TextView scoreTW12;
-    private TextView scoreTW13;
-    private TextView scoreTW14;
-    private TextView scoreTW15;
-    private TextView scoreTW16;
-    private TextView scoreTW17;
-    private TextView scoreTW18;
-
-
-
     private static Map<Integer, Integer> idPlusMap = new HashMap<Integer, Integer>();
     private static Map<Integer, Integer> idMinusMap = new HashMap<Integer, Integer>();
     private static Map<Integer, Integer> idTWMap = new HashMap<Integer, Integer>();
 
     private AppDatabase mDb;
+
+    public int totalScore;
+    public player activePlayer;
+    public course activeCourse;
+    public ArrayList<Integer> activeScore = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -124,6 +107,8 @@ public class MainActivity extends AppCompatActivity {
         idTWMap.put(16,R.id.Score16TW);
         idTWMap.put(17,R.id.Score17TW);
         idTWMap.put(18,R.id.Score18TW);
+
+
         //set the basic value of all the fields to "3"
         for(Map.Entry<Integer, Integer> entry : idTWMap.entrySet()) {
             int key = entry.getKey();
@@ -134,11 +119,16 @@ public class MainActivity extends AppCompatActivity {
         }
 
 
+
         mDb = AppDatabase.getInMemoryDatabase(getApplicationContext());
 
         populateDb();
 
         fetchData();
+    }
+    public void nextActivity(View v) {
+        startActivity(new Intent(getApplicationContext(),
+                ScrollingActivity.class));
     }
     public void onClickMinusButton(View v) {
         int n = idMinusMap.get(v.getId());
@@ -156,22 +146,24 @@ public class MainActivity extends AppCompatActivity {
             textView.setText(String.valueOf(i));
     }
     public void calculateTotal(View v) {
-        ArrayList<Integer> score = new ArrayList<>();
+        activeScore.clear();
         for(Map.Entry<Integer, Integer> entry : idTWMap.entrySet()) {
             TextView textView = findViewById(entry.getValue());
             int i = Integer.parseInt((textView).getText().toString());
-            score.add(i);
+            activeScore.add(i);
         }
-        Double sum = new Double(0);
-        for (int i : score) {
+        Integer sum = new Integer(0);
+        for (int i : activeScore) {
             sum = sum + i;
         }
         testTextView.setText(sum.toString());
+        totalScore = sum;
     }
 
     private void populateDb() {
         DatabaseInitializer.populateSync(mDb);
     }
+
     private void fetchData() {
         // Note: this kind of logic should not be in an activity.
         StringBuilder sb = new StringBuilder();
@@ -182,21 +174,37 @@ public class MainActivity extends AppCompatActivity {
         }
 
         //Getting course by name from db and creating an object of it.
-
         Course dbCourse = mDb.courseModel().findCourseByName("Tali");
         Scanner scanner = new Scanner(dbCourse.holes);
         List<Integer> listHoles = new ArrayList<Integer>();
         while (scanner.hasNextInt()) {
             listHoles.add(scanner.nextInt());
         }
-        course activeCourse = new course(dbCourse.name,dbCourse.parNumber,dbCourse.holesNumber,listHoles);
+        activeCourse = new course(dbCourse.name,dbCourse.parNumber,dbCourse.holesNumber,listHoles);
 
+        //Getting player by the name from db and creating an object of it.
+        Player dbPlayer = mDb.playerModel().findPlayerByName("Vade");
+
+        activePlayer = new player(dbPlayer.id,dbPlayer.name);
+        //Set best Score for the player from the DB
+        activePlayer.setBestScore(dbPlayer.bestScore);
+
+        /*
         String testString = activeCourse.getHoles().toString();
         testTextView.setText(activeCourse.getName()+ " " + activeCourse.getParScore());
 
         StringBuilder sB = new StringBuilder();
         sB.append(String.format(Locale.ENGLISH,
                 "%s, %s (%d)\n", dbCourse.name, dbCourse.holesNumber,dbCourse.parNumber));
+         */
+    }
+    public void saveGame(View v){
+        game savedGame = new game(1,activePlayer,activeCourse,totalScore,activeScore);
+
+
+        testTextView.setText(savedGame.getId()+", "+savedGame.getPlayer().getName()+", "+savedGame.getScore()+", "+
+        savedGame.getCourse().getName()+", "+savedGame.getCourse().getHoles().toString());
+
     }
 
 }

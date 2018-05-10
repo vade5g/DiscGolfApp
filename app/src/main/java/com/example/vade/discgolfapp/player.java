@@ -5,22 +5,22 @@ import java.util.List;
 
 public class player implements Serializable {
 
-    private int id;
+    private String id;
     private String name;
     private List<String> coursesByName;
     private int bestScore;
     private List games;
 
-    public player(int id,String name) {
+    public player(String id,String name) {
         this.setId(id);
         this.setName(name);
     }
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 

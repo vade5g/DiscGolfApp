@@ -39,6 +39,10 @@ public interface PlayerDao {
     @Query("select * from Player where name = :firstName and gamesPlayed = :played")
     List<Player> findUserByNameAndLastName(String firstName, String played);
 
+
+    @Query("select * from Player where name = :name")
+    Player findPlayerByName(String name);
+
     @Insert(onConflict = IGNORE)
     void insertUser(Player player);
 

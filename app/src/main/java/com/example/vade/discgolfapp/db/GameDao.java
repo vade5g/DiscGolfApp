@@ -27,12 +27,23 @@ import java.util.Date;
 import java.util.List;
 
 @Dao
-@TypeConverters(DateConverter.class)
 public interface GameDao {
 
     @Query("SELECT * From Game")
     LiveData<List<Game>> findAllGames();
-    /*
+
+    @Insert()
+    void insertGame(Game game);
+
+    @Query("DELETE FROM Game")
+    void deleteAll();
+}
+
+
+
+
+
+/*
     @Query("SELECT Game.id, Course.name, Player.name From Game " +
         "INNER JOIN Course ON Game.book_id = Course.id " +
         "INNER JOIN Player ON Game.user_id = Player.id ")
@@ -47,9 +58,3 @@ public interface GameDao {
     )
     LiveData<List<LoanWithUserAndBook>> findLoansByNameAfter(String userName, Date after);
     */
-    @Insert()
-    void insertGame(Game game);
-
-    @Query("DELETE FROM Game")
-    void deleteAll();
-}

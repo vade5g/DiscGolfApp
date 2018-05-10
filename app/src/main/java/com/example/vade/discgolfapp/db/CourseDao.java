@@ -31,7 +31,6 @@ import static android.arch.persistence.room.OnConflictStrategy.REPLACE;
 
 
 @Dao
-@TypeConverters(DateConverter.class)
 public interface CourseDao {
 
     @Query("select * from Course where id = :id")
