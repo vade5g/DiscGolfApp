@@ -38,9 +38,10 @@ public class DatabaseInitializer {
         task.execute();
     }
 
-    public static void populateSync(@NonNull final AppDatabase db) {
+    /* public static void populateSync(@NonNull final AppDatabase db) {
         populateWithTestData(db);
     }
+    */
 
     public static void addGame(final AppDatabase db, final String id,
                                 final Player player, final Course course, final int totalScore, final String score) {

@@ -18,7 +18,6 @@ import com.example.vade.discgolfapp.db.utils.DatabaseInitializer;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Locale;
 import java.util.Map;
 import java.util.Scanner;
 
@@ -50,7 +49,7 @@ public class GameActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        mDb = AppDatabase.getInMemoryDatabase(getApplicationContext());
+        mDb = AppDatabase.getStoredDatabase(getApplicationContext());
         setContentView(R.layout.activity_game);
         testTextView = findViewById(R.id.testTextView);
         //map all the plus buttons.
@@ -146,7 +145,7 @@ public class GameActivity extends AppCompatActivity {
 
         }
 
-        switcher = (ViewSwitcher) findViewById(R.id.profileSwitcher);
+        switcher = findViewById(R.id.profileSwitcher);
 
 
 
@@ -221,7 +220,7 @@ public class GameActivity extends AppCompatActivity {
 
 
     private void populateDb() {
-        DatabaseInitializer.populateSync(mDb);
+        DatabaseInitializer.populateAsync(mDb);
     }
 
     private void fetchData() {

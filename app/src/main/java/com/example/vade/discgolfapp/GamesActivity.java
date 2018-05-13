@@ -7,9 +7,9 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.ViewSwitcher;
 
 import com.example.vade.discgolfapp.db.AppDatabase;
-import com.example.vade.discgolfapp.db.Course;
 import com.example.vade.discgolfapp.db.Game;
 
 import java.util.ArrayList;
@@ -20,12 +20,13 @@ public class GamesActivity extends AppCompatActivity {
     private ListView gamesListView;
     private AppDatabase mDb;
     private EditText gameET;
+    private ViewSwitcher switcher;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_games);
-        mDb = AppDatabase.getInMemoryDatabase(getApplicationContext());
+        mDb = AppDatabase.getStoredDatabase(getApplicationContext());
         gamesListView = findViewById(R.id.gamesListView);
         //gameET = findViewById(R.id.courseNameET);
 
@@ -37,6 +38,19 @@ public class GamesActivity extends AppCompatActivity {
         }
         ArrayAdapter<String> listAdapter3 = new ArrayAdapter<>(this,android.R.layout.simple_list_item_1,myStringArray3);
         gamesListView.setAdapter(listAdapter3);
+
+        switcher = findViewById(R.id.clearSwitcher);
+    }
+    public void previousView(View view){
+        switcher.showPrevious();
+    }
+
+    public void nextView(View v) { switcher.showNext();}
+
+    public void clearAllData(View v) {
+        mDb.playerModel().deleteAll();
+        mDb.courseModel().deleteAll();
+        mDb.gameModel().deleteAll();
     }
 
     public void menuActivity(View v) {

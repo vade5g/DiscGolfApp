@@ -9,26 +9,39 @@
     <ViewSwitcher xmlns:android="http://schemas.android.com/apk/res/android"
         android:id="@+id/profileSwitcher"
         android:layout_width="fill_parent"
-        android:layout_height="fill_parent">
+        android:layout_height="fill_parent"
+        tools:padding="5dp"
+        >
 
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
+
             <TableLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
-                <TableRow>
+                android:layout_height="match_parent"
+
+                android:orientation="vertical"
+                tools:padding="5dp">
+
+                <TableRow
+                    tools:padding="5dp"
+                    >
+
                     <TextView
                         android:id="@+id/textView"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:gravity="center"
-                        android:text="Choose player and Course"
                         android:layout_column="1"
                         android:layout_span="2"
-                        />
+                        android:gravity="center"
+                        android:text="Choose player and Course" />
                 </TableRow>
-                <TableRow>
+
+                <TableRow
+                    tools:padding="5dp"
+                    >
+
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -44,40 +57,46 @@
                         android:background="@android:drawable/btn_dropdown"
                         android:spinnerMode="dropdown" />
                 </TableRow>
-                <TableRow>
+
+                <TableRow
+                    tools:padding="5dp"
+                    >
+
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:gravity="center"
-                        android:text="Course"
                         android:layout_column="1"
-                        />
+                        android:gravity="center"
+                        android:text="Course" />
+
                     <Spinner
                         android:id="@+id/spinner2"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:background="@android:drawable/btn_dropdown"
-                        android:spinnerMode="dropdown"
                         android:layout_column="2"
-                        />
+                        android:background="@android:drawable/btn_dropdown"
+                        android:spinnerMode="dropdown" />
                 </TableRow>
-                <TableRow>
+
+                <TableRow
+                    tools:padding="5dp"
+                    >
+
                     <Button
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_column="1"
                         android:layout_toRightOf="@id/textView"
                         android:onClick="menuActivity"
-                        android:text="menu"
-                        android:layout_column="1"
-                        />
+                        android:text="menu" />
+
                     <Button
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_column="2"
                         android:layout_toRightOf="@id/textView"
                         android:onClick="nextView"
-                        android:text="next"
-                        android:layout_column="2"
-                        />
+                        android:text="next" />
 
                 </TableRow>
 
@@ -90,7 +109,9 @@
 
             <ScrollView
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="match_parent"
+                tools:padding="5dp"
+                >
 
                 <LinearLayout
                     android:layout_width="match_parent"

@@ -9,10 +9,12 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
         <TableRow>
+
             <TextView
                 android:layout_column="1"
+                android:layout_marginLeft="@dimen/text_margin"
                 android:text="List of Players"
-                />
+                tools:padding="5dp" />
         </TableRow>
 
         <TableRow>

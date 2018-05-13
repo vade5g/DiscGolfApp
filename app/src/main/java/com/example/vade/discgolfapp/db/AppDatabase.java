@@ -32,18 +32,18 @@ public abstract class AppDatabase extends RoomDatabase {
 
     public abstract GameDao gameModel();
 
-    public static AppDatabase getInMemoryDatabase(Context context) {
+    public static AppDatabase getStoredDatabase(Context context) {
         if (INSTANCE == null) {
             INSTANCE =
-                    Room.inMemoryDatabaseBuilder(context.getApplicationContext(), AppDatabase.class)
-                    // To simplify the codelab, allow queries on the main thread.
-                    // Don't do this on a real app! See PersistenceBasicSample for an example.
+                    //Using databaseguilder instead of inMemory data to prevent data from loosing when app terminates.
+                    Room.databaseBuilder(context.getApplicationContext(), AppDatabase.class,"DiscGolfAppDB")
+                    //Room.inMemoryDatabaseBuilder(context.getApplicationContext(), AppDatabase.class)
                     .allowMainThreadQueries()
                     .build();
+
         }
         return INSTANCE;
     }
-
     public static void destroyInstance() {
         INSTANCE = null;
     }

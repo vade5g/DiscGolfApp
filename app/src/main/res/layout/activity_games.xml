@@ -5,31 +5,90 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".GamesActivity">
-    <TableLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-        <TableRow>
-            <Button
-                android:id="@+id/menuButton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_column="1"
-                android:layout_gravity="center_horizontal"
-                android:onClick="menuActivity"
-                android:text="Menu"
-                />
-        </TableRow>
-        <TableRow>
-            <ListView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                tools:layout_editor_absoluteX="8dp"
-                tools:layout_editor_absoluteY="8dp"
-                android:layout_gravity="center_horizontal"
-                android:layout_column="1"
-                android:id="@+id/gamesListView"
-                />
-        </TableRow>
-    </TableLayout>
+    <ViewSwitcher xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/clearSwitcher"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent">
 
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <TableLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+                <TableRow>
+
+                    <Button
+                        android:id="@+id/menuButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_column="1"
+                        android:layout_gravity="center_horizontal"
+                        android:onClick="menuActivity"
+                        android:text="@string/menu" />
+                    <Button
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:onClick="nextView"
+                        android:text="Clear All Data"
+                        android:layout_column="2"
+                        />
+                </TableRow>
+                <TableRow>
+                    <ListView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        tools:layout_editor_absoluteX="8dp"
+                        tools:layout_editor_absoluteY="8dp"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_column="1"
+                        android:id="@+id/gamesListView"
+                        />
+                </TableRow>
+            </TableLayout>
+        </RelativeLayout>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TableLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+                <TableRow>
+                    <TextView
+                        android:id="@+id/textView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:text="Are you sure?"
+                        android:layout_column="1"
+                        android:layout_span="2"
+                        />
+                </TableRow>
+                <TableRow>
+                    <Button
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:onClick="clearAllData"
+                        android:text="Clear all data"
+                        android:layout_column="2"
+                        />
+
+                    <Button
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_column="3"
+                        android:onClick="previousView"
+                        android:text="@string/back" />
+
+                </TableRow>
+
+
+            </TableLayout>
+
+
+        </RelativeLayout>
+
+
+    </ViewSwitcher>
 </android.support.constraint.ConstraintLayout>

@@ -26,6 +26,8 @@ import android.arch.persistence.room.TypeConverters;
 import java.util.Date;
 import java.util.List;
 
+import static android.arch.persistence.room.OnConflictStrategy.IGNORE;
+
 @Dao
 public interface GameDao {
 
@@ -35,7 +37,7 @@ public interface GameDao {
     @Query("SELECT * From Game")
     List<Game> findAllGamesSync();
 
-    @Insert()
+    @Insert(onConflict = IGNORE)
     void insertGame(Game game);
 
     @Query("DELETE FROM Game")

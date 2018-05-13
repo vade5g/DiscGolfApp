@@ -9,29 +9,34 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
         <TableRow>
+
             <TextView
                 android:layout_column="1"
-                android:text="List of Courses"
+                android:layout_marginLeft="@dimen/text_margin"
 
-                />
+                android:text="@string/listofcourses" />
         </TableRow>
 
         <TableRow>
+
             <EditText
                 android:id="@+id/courseNameET"
+                android:layout_width="101dp"
                 android:layout_column="1"
-                android:hint="Courses Name"
                 android:layout_gravity="left"
-                />
+                android:layout_marginLeft="@dimen/fab_margin"
+                android:layout_span="1"
+                android:hint="@string/name"
+                android:inputType="text" />
+
             <Button
                 android:id="@+id/searchCourseButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_column="2"
                 android:layout_gravity="center_horizontal"
-                android:text="Search"
                 android:onClick="searchCourse"
-                />
+                android:text="@string/search" />
 
             <Button
                 android:id="@+id/addButton"
@@ -40,8 +45,8 @@
                 android:layout_column="3"
                 android:layout_gravity="center_horizontal"
                 android:onClick="addNew"
-                android:text="Add new"
-                />
+                android:text="@string/addnew" />
+
             <Button
                 android:id="@+id/menuButton"
                 android:layout_width="wrap_content"
@@ -49,8 +54,7 @@
                 android:layout_column="3"
                 android:layout_gravity="center_horizontal"
                 android:onClick="menuActivity"
-                android:text="Menu"
-                />
+                android:text="@string/menu" />
 
 
         </TableRow>

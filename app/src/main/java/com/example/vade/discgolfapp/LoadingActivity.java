@@ -3,7 +3,6 @@ package com.example.vade.discgolfapp;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.Menu;
 
 import com.example.vade.discgolfapp.db.AppDatabase;
 import com.example.vade.discgolfapp.db.utils.DatabaseInitializer;
@@ -17,10 +16,11 @@ public class LoadingActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_loading);
 
-        mDb = AppDatabase.getInMemoryDatabase(getApplicationContext());
 
-        populateDb();
+        mDb = AppDatabase.getStoredDatabase(getApplicationContext());
 
+        //populateDb();
+        DatabaseInitializer.populateAsync(mDb);
 
         Thread welcomeThread = new Thread() {
             @Override
@@ -44,6 +44,6 @@ public class LoadingActivity extends AppCompatActivity {
 
     }
     private void populateDb() {
-        DatabaseInitializer.populateSync(mDb);
+        DatabaseInitializer.populateAsync(mDb);
     }
 }

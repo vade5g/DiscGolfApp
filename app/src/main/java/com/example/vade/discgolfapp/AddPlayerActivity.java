@@ -3,13 +3,11 @@ package com.example.vade.discgolfapp;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.text.TextUtils;
 import android.view.View;
 import android.widget.EditText;
 
 import com.example.vade.discgolfapp.db.AppDatabase;
 import com.example.vade.discgolfapp.db.Player;
-import com.example.vade.discgolfapp.db.utils.DatabaseInitializer;
 
 public class AddPlayerActivity extends AppCompatActivity {
 
@@ -21,7 +19,7 @@ public class AddPlayerActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_player);
 
-        mDb = AppDatabase.getInMemoryDatabase(getApplicationContext());
+        mDb = AppDatabase.getStoredDatabase(getApplicationContext());
         addPlayerET = findViewById(R.id.newPlayerET);
 
     }
