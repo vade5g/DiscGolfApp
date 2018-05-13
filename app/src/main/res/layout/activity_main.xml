@@ -36,7 +36,7 @@
                     <EditText
                         android:id="@+id/courseNameET"
                         android:layout_column="2"
-                        android:text="Course name"
+                        android:hint="CourseName"
                         />
                     <Button
                         android:id="@+id/calculateButton"

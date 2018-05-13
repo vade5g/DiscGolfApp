@@ -79,26 +79,26 @@ public class DatabaseInitializer {
         //db.playerModel().deleteAll();
         //db.courseModel().deleteAll();
 
-        Player player1 = addPlayer(db, "1", "Vade", 0, 0);
-        Player player2 = addPlayer(db, "2", "Topi", 0, 0);
+        Player player1 = addPlayer(db, "1", "Vade", 75, 1);
+        Player player2 = addPlayer(db, "2", "Topi", 54, 4);
 
 
-        Course course1 = addCourse(db, "1", "Tali", 18, 54, "3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3");
-        Course course2 = addCourse(db, "2", "Meikku",18, 54, "3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3");
-        Course course3 = addCourse(db, "3", "Puolari",18, 54, "3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3");
-        Course course4 = addCourse(db, "4", "Kivikko",18, 54, "3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3");
-        addCourse(db, "5", "Jatemaki",18, 54, "3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3");
-        /*
+        Course course1 = addCourse(db, "1", "Tali", 18, 54, "5 3 3 3 3 3 3 3 4 4 3 3 3 3 4 3 3 3");
+        Course course2 = addCourse(db, "2", "Meikku",18, 54, "3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3");
+        Course course3 = addCourse(db, "3", "Puolari",18, 54, "3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3");
+        Course course4 = addCourse(db, "4", "Kivikko",18, 54, "3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3");
+        addCourse(db, "5", "Jatemaki",18, 54, "3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3");
+
         try {
 
 
-            addGame(db, "1", player1, course1, 75, "3,4,3,5,3,6,3,4,5,3,6,4,5,4,3,6,5,3");
+            addGame(db, "1", player1, course1, 75, "3 4 3 5 3 6 3 4 5 3 6 4 5 4 3 6 5 3");
             Thread.sleep(DELAY_MILLIS);
-            addGame(db, "2", player2, course1, 65, "3,5,4,3,4,3,4,3,4,3,4,3,4,3,4,5,3,4");
+            addGame(db, "2", player2, course1, 65, "3 5 4 3 4 3 4 3 4 3 4 3 4 3 4 5 3 4");
             Thread.sleep(DELAY_MILLIS);
-            addGame(db, "3", player2, course2, 54, "3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3");
+            addGame(db, "3", player2, course2, 54, "3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3");
             Thread.sleep(DELAY_MILLIS);
-            addGame(db, "4", player2, course3, 65, "4,4,3,3,3,3,3,4,3,4,3,4,3,4,3,4,3,4");
+            addGame(db, "4", player2, course3, 65, "4 4 3 3 3 3 3 4 3 4 3 4 3 4 3 4 3 4");
             Thread.sleep(DELAY_MILLIS);
             addGame(db, "5", player2, course4, 79, "5,5,4,5,4,5,6,4,5,4,6,4,5,4,6,4,6,4");
             Log.d("DB", "Added Games");
@@ -106,7 +106,6 @@ public class DatabaseInitializer {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-        */
     }
 
     private static class PopulateDbAsync extends AsyncTask<Void, Void, Void> {

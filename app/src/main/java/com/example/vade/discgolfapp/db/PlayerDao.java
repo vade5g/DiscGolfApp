@@ -60,8 +60,6 @@ public interface PlayerDao {
     @Query("delete from Player where name like :badName like :badName")
     int deleteUsersByName(String badName);
 
-    @Insert(onConflict = IGNORE)
-    void insertOrReplaceUsers(Player... players);
 
     @Delete
     void deleteUsers(Player player1, Player player2);

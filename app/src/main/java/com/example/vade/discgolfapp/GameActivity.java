@@ -150,10 +150,26 @@ public class GameActivity extends AppCompatActivity {
 
 
 
-        fetchData();
+        //fetchData();
     }
     public void nextView(View view) {
         switcher.showNext();
+        Course dbCourse = mDb.courseModel().findCourseByName(spinnerCourse.getSelectedItem().toString());
+        Scanner scanner = new Scanner(dbCourse.holes);
+        List<Integer> listHoles = new ArrayList<Integer>();
+        while (scanner.hasNextInt()) {
+            listHoles.add(scanner.nextInt());
+        }
+        int i = 0;
+
+        for(Map.Entry<Integer, Integer> entry : idTWMap.entrySet()) {
+            int key = entry.getKey();
+            int value = entry.getValue();
+            TextView textView = findViewById(entry.getValue());
+            String numero = listHoles.get(i).toString();
+            textView.setText(numero);
+            i++;
+        }
     }
 
     public void previousView(View view){
@@ -181,6 +197,10 @@ public class GameActivity extends AppCompatActivity {
         }
         testTextView.setText(sum.toString());
         totalScore = sum;
+    }
+    public void populateActiveScore() {
+        activeScore.clear();
+
     }
 
     public void onClickMinusButton(View v) {
@@ -243,14 +263,14 @@ public class GameActivity extends AppCompatActivity {
         calculateTotal(v);
         Course saveCourse = mDb.courseModel().findCourseByName(spinnerCourse.getSelectedItem().toString());
         Player savePlayer = mDb.playerModel().findPlayerByName(spinnerPlayer.getSelectedItem().toString());
-        DatabaseInitializer.addGame(mDb,id,savePlayer,saveCourse,totalScore,activeScore.toString());
+        DatabaseInitializer.addGame(mDb,id,savePlayer,saveCourse,totalScore,activeScore.toString().replaceAll("[\\[\\]]", "").replaceAll(",", " "));
         //game savedGame = new game(id,savePlayer,saveCourse,totalScore,activeScore);
         savePlayer.gamesPlayed++;
         if (savePlayer.bestScore > totalScore || savePlayer.bestScore == 0) {
             savePlayer.bestScore = totalScore;
         }
         mDb.playerModel().updateUser(savePlayer);
-        testTextView.setText(id+", "+savePlayer.name+", "+saveCourse.name+", "+totalScore+", "+activeScore.toString());
+        testTextView.setText(id+", "+savePlayer.name+", "+saveCourse.name+", "+totalScore+", "+activeScore.toString().replaceAll("[\\[\\]]", "").replaceAll(",", " "));
     }
 }
 
