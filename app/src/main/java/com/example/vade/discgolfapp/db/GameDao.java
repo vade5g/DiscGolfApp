@@ -32,6 +32,9 @@ public interface GameDao {
     @Query("SELECT * From Game")
     LiveData<List<Game>> findAllGames();
 
+    @Query("SELECT * From Game")
+    List<Game> findAllGamesSync();
+
     @Insert()
     void insertGame(Game game);
 

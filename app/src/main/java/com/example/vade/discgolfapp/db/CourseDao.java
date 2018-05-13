@@ -39,6 +39,13 @@ public interface CourseDao {
     @Query("select * from Course where name= :name")
     Course findCourseByName(String name);
 
+
+    @Query("SELECT * FROM Course where name= :name")
+    List<Course> findCoursesByName(String name);
+
+    @Query("SELECT * FROM Course where id= :id")
+    Course findCourseById(String id);
+
     /*@Query("SELECT * FROM Course " +
             "INNER JOIN Game ON Game.id = Course.id " +
             "INNER JOIN Player on Player.id = Game.id" +
@@ -64,7 +71,7 @@ public interface CourseDao {
 
     @Query("SELECT * FROM Course " +
             "INNER JOIN Game ON Game.id LIKE Course.id " +
-            "WHERE Game.player_id LIKE :userId "
+            "WHERE Game.player_id Like :userId "
     )
     LiveData<List<Course>> findGamesPlayedByUser(String userId);
     /*
@@ -83,14 +90,14 @@ public interface CourseDao {
     List<Course> findBooksBorrowedByUserSync(String userId);
     */
     @Query("SELECT * FROM Course")
-    LiveData<List<Course>> findAllBooks();
+    LiveData<List<Course>> findAllCourses();
 
 
     @Query("SELECT * FROM Course")
-    List<Course> findAllBooksSync();
+    List<Course> findAllCoursesSync();
 
     @Insert(onConflict = IGNORE)
-    void insertBook(Course course);
+    void insertCourse(Course course);
 
     @Update(onConflict = REPLACE)
     void updateBook(Course course);

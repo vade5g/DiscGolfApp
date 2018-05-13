@@ -32,4 +32,13 @@ public class Player {
     public int gamesPlayed;
 
     public int bestScore;
+
+    public Player(String id,String name) {
+        this.id = id;
+        this.name = name;
+        this.gamesPlayed = 0;
+        this.bestScore = 0;
+    }
+
+
 }

@@ -20,10 +20,12 @@ import android.arch.persistence.room.Dao;
 import android.arch.persistence.room.Delete;
 import android.arch.persistence.room.Insert;
 import android.arch.persistence.room.Query;
+import android.arch.persistence.room.Update;
 
 import java.util.List;
 
 import static android.arch.persistence.room.OnConflictStrategy.IGNORE;
+import static android.arch.persistence.room.OnConflictStrategy.REPLACE;
 
 @Dao
 public interface PlayerDao {
@@ -32,6 +34,9 @@ public interface PlayerDao {
 
     @Query("SELECT * FROM Player WHERE bestScore < :score")
     List<Player> findYoungerThan(int score);
+
+    @Update(onConflict = REPLACE)
+    void updateUser(Player player);
 
     @Query("select * from Player where id = :id")
     Player loadUserById(int id);
@@ -42,6 +47,9 @@ public interface PlayerDao {
 
     @Query("select * from Player where name = :name")
     Player findPlayerByName(String name);
+
+    @Query("select * from Player where id = :id")
+    Player findPlayerById(String id);
 
     @Insert(onConflict = IGNORE)
     void insertUser(Player player);
@@ -57,9 +65,6 @@ public interface PlayerDao {
 
     @Delete
     void deleteUsers(Player player1, Player player2);
-
-    @Query("SELECT * FROM Player WHERE :age == :age") // TODO: Fix this!
-    List<Player> findUsersYoungerThan(int age);
 
     @Query("SELECT * FROM Player WHERE gamesPlayed < :played")
     List<Player> findUsersThatHavePlayedLessThan(int played);

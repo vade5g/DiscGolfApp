@@ -1,15 +1,12 @@
 package com.example.vade.discgolfapp;
 
-import android.app.Application;
-import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.text.TextUtils;
-import android.util.Log;
 import android.view.View;
-import android.widget.Button;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.ViewSwitcher;
 
@@ -17,22 +14,15 @@ import com.example.vade.discgolfapp.db.AppDatabase;
 import com.example.vade.discgolfapp.db.Course;
 import com.example.vade.discgolfapp.db.Player;
 import com.example.vade.discgolfapp.db.utils.DatabaseInitializer;
-import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
 
-import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 import java.util.Scanner;
-import java.util.stream.Collectors;
-import java.util.stream.IntStream;
 
-
-public class MainActivity extends AppCompatActivity {
-
+public class GameActivity extends AppCompatActivity {
     private TextView testTextView;
     private static List<player> players;
     private static List<game> games;
@@ -50,10 +40,18 @@ public class MainActivity extends AppCompatActivity {
     public List<Integer> activeScore = new ArrayList<>();
     private EditText courseNameET;
 
+
+    private Spinner spinnerPlayer;
+    private Spinner spinnerCourse;
+
+    private ViewSwitcher switcher;
+    private static final int REFRESH_SCREEN = 1;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        mDb = AppDatabase.getInMemoryDatabase(getApplicationContext());
+        setContentView(R.layout.activity_game);
         testTextView = findViewById(R.id.testTextView);
         //map all the plus buttons.
         idPlusMap.put(R.id.buttonPlus1,1);
@@ -113,6 +111,31 @@ public class MainActivity extends AppCompatActivity {
         idTWMap.put(17,R.id.Score17TW);
         idTWMap.put(18,R.id.Score18TW);
 
+        //Spinners for selecting course and Player
+        spinnerPlayer = findViewById(R.id.spinner1);
+        spinnerCourse = findViewById(R.id.spinner2);
+
+        //PlayersSpinner
+        List<Player> players = mDb.playerModel().loadAllUsers();
+        ArrayList<String> myStringArray2 = new ArrayList<String>();
+        for (Player player : players) {
+            myStringArray2.add(player.name);
+        }
+        //create an adapter to describe how the items are displayed, adapters are used in several places in android.
+        //There are multiple variations of this, but this is the basic variant.
+        ArrayAdapter<String> playerAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, myStringArray2);
+        //set the spinners adapter to the previously created one.
+        spinnerPlayer.setAdapter(playerAdapter);
+
+        //Courses Spinner
+        List<Course> coursesList = mDb.courseModel().findAllCoursesSync();
+        ArrayList<String> myStringArray1 = new ArrayList<String>();
+        for (Course course : coursesList) {
+            myStringArray1.add(course.name);
+        }
+        ArrayAdapter<String> coursesAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, myStringArray1);
+        //set the spinners adapter to the previously created one.
+        spinnerCourse.setAdapter(coursesAdapter);
 
         //set the basic value of all the fields to "3"
         for(Map.Entry<Integer, Integer> entry : idTWMap.entrySet()) {
@@ -123,13 +146,18 @@ public class MainActivity extends AppCompatActivity {
 
         }
 
-        courseNameET = findViewById(R.id.courseNameET);
+        switcher = (ViewSwitcher) findViewById(R.id.profileSwitcher);
 
-        mDb = AppDatabase.getInMemoryDatabase(getApplicationContext());
 
-        //populateDb();
 
-        //fetchData();
+        fetchData();
+    }
+    public void nextView(View view) {
+        switcher.showNext();
+    }
+
+    public void previousView(View view){
+        switcher.showPrevious();
     }
 
     public void nextActivity(View v) {
@@ -165,10 +193,10 @@ public class MainActivity extends AppCompatActivity {
 
     public void onClickPlusButton(View v) {
         int n = idPlusMap.get(v.getId());
-            TextView textView = findViewById(idTWMap.get(n));
-            int i = Integer.parseInt(textView.getText().toString());
-            i++;
-            textView.setText(String.valueOf(i));
+        TextView textView = findViewById(idTWMap.get(n));
+        int i = Integer.parseInt(textView.getText().toString());
+        i++;
+        textView.setText(String.valueOf(i));
     }
 
 
@@ -178,13 +206,13 @@ public class MainActivity extends AppCompatActivity {
 
     private void fetchData() {
         // Note: this kind of logic should not be in an activity.
-        StringBuilder sb = new StringBuilder();
+        /*StringBuilder sb = new StringBuilder();
         List<Player> proPlayers = mDb.playerModel().findYoungerThan(3099);
         for (Player proPlayer : proPlayers) {
             sb.append(String.format(Locale.US,
                     "%s, %s (%d)\n", proPlayer.name, proPlayer.gamesPlayed, proPlayer.bestScore));
         }
-
+        */
         //Getting course by name from db and creating an object of it.
         Course dbCourse = mDb.courseModel().findCourseByName("Tali");
         Scanner scanner = new Scanner(dbCourse.holes);
@@ -210,23 +238,22 @@ public class MainActivity extends AppCompatActivity {
                 "%s, %s (%d)\n", dbCourse.name, dbCourse.holesNumber,dbCourse.parNumber));
          */
     }
-    public void saveCourse(View v) {
-        if (courseNameET.length() != 0) {
-            calculateTotal(v);
-            String id = courseNameET.getText().toString() + totalScore;
-            String courseName = courseNameET.getText().toString();
-            course courseToBeSaved = new course(id,courseName,totalScore,18,activeScore);
-            String holesString = TextUtils.join(" ", activeScore);
-            DatabaseInitializer.addCourse(mDb,id,courseName,18,totalScore,holesString);
-            //testTextView.setText(id+ ", "+courseName+ ", " +18+ ", "+totalScore+ ", "+holesString);
-            startActivity(new Intent(getApplicationContext(),
-                    CoursesActivity.class));
-        } else {
-            return;
+    public void saveGame(View v){
+        String id = "ID"+mDb.gameModel().findAllGamesSync().size()+1;
+        calculateTotal(v);
+        Course saveCourse = mDb.courseModel().findCourseByName(spinnerCourse.getSelectedItem().toString());
+        Player savePlayer = mDb.playerModel().findPlayerByName(spinnerPlayer.getSelectedItem().toString());
+        DatabaseInitializer.addGame(mDb,id,savePlayer,saveCourse,totalScore,activeScore.toString());
+        //game savedGame = new game(id,savePlayer,saveCourse,totalScore,activeScore);
+        savePlayer.gamesPlayed++;
+        if (savePlayer.bestScore > totalScore || savePlayer.bestScore == 0) {
+            savePlayer.bestScore = totalScore;
         }
+        mDb.playerModel().updateUser(savePlayer);
+        testTextView.setText(id+", "+savePlayer.name+", "+saveCourse.name+", "+totalScore+", "+activeScore.toString());
     }
-
 }
+
 
 
 

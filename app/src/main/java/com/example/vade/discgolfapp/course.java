@@ -1,16 +1,20 @@
 package com.example.vade.discgolfapp;
 
 import java.io.Serializable;
+import java.lang.reflect.Array;
+import java.util.ArrayList;
 import java.util.List;
 
 public class course implements Serializable {
 
+    private String id;
     private String name;
     private int parScore;
     private int holesNumber;
     private List<Integer> holes;
 
-    public course (String name, int parScore, int numberOfHoles,List holes) {
+    public course (String id, String name, int parScore, int numberOfHoles,List holes) {
+        this.setId((id));
         this.setName(name);
         this.setParScore(parScore);
         this.setHolesNumber(numberOfHoles);
@@ -48,5 +52,13 @@ public class course implements Serializable {
 
     public void setHoles(List holes) {
         this.holes = holes;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 }

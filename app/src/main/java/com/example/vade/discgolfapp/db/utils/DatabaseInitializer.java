@@ -61,28 +61,26 @@ public class DatabaseInitializer {
         course.holesNumber = holesNumber;
         course.parNumber = parNumber;
         course.holes = holes;
-        db.courseModel().insertBook(course);
+        db.courseModel().insertCourse(course);
         return course;
     }
 
     public static Player addPlayer(final AppDatabase db, final String id, final String name,
                                     final int bestScore, final int gamesPlayed) {
-        Player player = new Player();
-        player.id = id;
+        Player player = new Player(id,name);
         player.gamesPlayed = gamesPlayed;
-        player.name = name;
         player.bestScore = bestScore;
         db.playerModel().insertUser(player);
         return player;
     }
 
     private static void populateWithTestData(AppDatabase db) {
-        db.gameModel().deleteAll();
-        db.playerModel().deleteAll();
-        db.courseModel().deleteAll();
+        //db.gameModel().deleteAll();
+        //db.playerModel().deleteAll();
+        //db.courseModel().deleteAll();
 
-        Player player1 = addPlayer(db, "1", "Vade", 54, 130);
-        Player player2 = addPlayer(db, "2", "Topi", 55, 150);
+        Player player1 = addPlayer(db, "1", "Vade", 0, 0);
+        Player player2 = addPlayer(db, "2", "Topi", 0, 0);
 
 
         Course course1 = addCourse(db, "1", "Tali", 18, 54, "3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3");
@@ -90,8 +88,9 @@ public class DatabaseInitializer {
         Course course3 = addCourse(db, "3", "Puolari",18, 54, "3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3");
         Course course4 = addCourse(db, "4", "Kivikko",18, 54, "3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3");
         addCourse(db, "5", "Jatemaki",18, 54, "3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3");
+        /*
         try {
-            // Loans are added with a delay, to have time for the UI to react to changes.
+
 
             addGame(db, "1", player1, course1, 75, "3,4,3,5,3,6,3,4,5,3,6,4,5,4,3,6,5,3");
             Thread.sleep(DELAY_MILLIS);
@@ -107,6 +106,7 @@ public class DatabaseInitializer {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
+        */
     }
 
     private static class PopulateDbAsync extends AsyncTask<Void, Void, Void> {

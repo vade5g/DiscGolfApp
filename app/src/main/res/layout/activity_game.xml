@@ -1,0 +1,787 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".GameActivity">
+
+    <ViewSwitcher xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/profileSwitcher"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <TableLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+                <TableRow>
+                    <TextView
+                        android:id="@+id/textView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:text="Choose player and Course"
+                        android:layout_column="1"
+                        />
+                </TableRow>
+                <TableRow>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_column="1"
+                        android:gravity="center"
+                        android:text="Player" />
+
+                    <Spinner
+                        android:id="@+id/spinner1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_column="2"
+                        android:background="@android:drawable/btn_dropdown"
+                        android:spinnerMode="dropdown" />
+                </TableRow>
+                <TableRow>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:text="Course"
+                        android:layout_column="1"
+                        />
+                    <Spinner
+                        android:id="@+id/spinner2"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@android:drawable/btn_dropdown"
+                        android:spinnerMode="dropdown"
+                        android:layout_column="2"
+                        />
+                </TableRow>
+                <TableRow>
+                    <Button
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_toRightOf="@id/textView"
+                        android:onClick="nextView"
+                        android:text="next"
+                        android:layout_column="2"
+                        />
+
+                </TableRow>
+
+
+            </TableLayout>
+        </RelativeLayout>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical" >
+
+                    <TableLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="center">
+
+                        <TableRow android:gravity="center">
+
+                            <TextView
+                                android:id="@+id/testTextView"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_column="1"
+                                android:layout_span="3"
+                                android:text="Set Score and click save"
+
+                                />
+                        </TableRow>
+
+                        <TableRow>
+                            <Button
+                                android:id="@+id/calculateButton"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_column="1"
+                                android:onClick="saveGame"
+                                android:text="Save" />
+                            <Button
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:onClick="previousView"
+                                android:layout_column="2"
+                                android:text="back" />
+
+                        </TableRow>
+
+                        <TableRow
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_horizontal">
+                            >
+
+                            <Button
+                                android:id="@+id/buttonMinus1"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_column="1"
+                                android:layout_gravity="center_horizontal"
+                                android:onClick="onClickMinusButton"
+                                android:text="-" />
+
+                            <TextView
+                                android:id="@+id/Score1TW"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_column="2"
+                                android:layout_gravity="center_horizontal"
+                                android:text="Score" />
+
+                            <Button
+                                android:id="@+id/buttonPlus1"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_column="3"
+                                android:layout_gravity="center_horizontal"
+                                android:onClick="onClickPlusButton"
+                                android:text="+" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Hole 1"
+                                android:layout_column="4"
+                                android:layout_gravity="center"
+                                />
+                        </TableRow>
+
+                        <TableRow>
+
+                            <Button
+                                android:id="@+id/buttonMinus2"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_column="1"
+                                android:onClick="onClickMinusButton"
+                                android:text="-" />
+
+                            <TextView
+                                android:id="@+id/Score2TW"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_column="2"
+                                android:layout_gravity="center"
+                                android:text="Score" />
+
+                            <Button
+                                android:id="@+id/buttonPlus2"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_column="3"
+                                android:layout_gravity="center"
+                                android:onClick="onClickPlusButton"
+                                android:text="+" />
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Hole 2"
+                                android:layout_column="4"
+                                android:layout_gravity="center"
+                                />
+                        </TableRow>
+
+                        <TableRow>
+
+                            <Button
+                                android:id="@+id/buttonMinus3"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_column="1"
+                                android:onClick="onClickMinusButton"
+                                android:text="-" />
+
+                            <TextView
+                                android:id="@+id/Score3TW"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_column="2"
+                                android:layout_gravity="center"
+                                android:text="Score" />
+
+                            <Button
+                                android:id="@+id/buttonPlus3"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_column="3"
+                                android:layout_gravity="center"
+                                android:onClick="onClickPlusButton"
+                                android:text="+" />
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Hole 3"
+                                android:layout_column="4"
+                                android:layout_gravity="center"
+                                />
+                        </TableRow>
+
+                        <TableRow>
+
+                            <Button
+                                android:id="@+id/buttonMinus4"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_column="1"
+                                android:onClick="onClickMinusButton"
+                                android:text="-" />
+
+                            <TextView
+                                android:id="@+id/Score4TW"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_column="2"
+                                android:layout_gravity="center"
+                                android:text="Score" />
+
+                            <Button
+                                android:id="@+id/buttonPlus4"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_column="3"
+                                android:layout_gravity="center"
+                                android:onClick="onClickPlusButton"
+                                android:text="+" />
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Hole 4"
+                                android:layout_column="4"
+                                android:layout_gravity="center"
+                                />
+                        </TableRow>
+
+                        <TableRow>
+
+                            <Button
+                                android:id="@+id/buttonMinus5"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_column="1"
+                                android:onClick="onClickMinusButton"
+                                android:text="-" />
+
+                            <TextView
+                                android:id="@+id/Score5TW"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_column="2"
+                                android:layout_gravity="center"
+                                android:text="Score" />
+
+                            <Button
+                                android:id="@+id/buttonPlus5"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_column="3"
+                                android:layout_gravity="center"
+                                android:onClick="onClickPlusButton"
+                                android:text="+" />
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Hole 5"
+                                android:layout_column="4"
+                                android:layout_gravity="center"
+                                />
+                        </TableRow>
+
+                        <TableRow>
+
+                            <Button
+                                android:id="@+id/buttonMinus6"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_column="1"
+                                android:onClick="onClickMinusButton"
+                                android:text="-" />
+
+                            <TextView
+                                android:id="@+id/Score6TW"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_column="2"
+                                android:layout_gravity="center"
+                                android:text="Score" />
+
+                            <Button
+                                android:id="@+id/buttonPlus6"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_column="3"
+                                android:layout_gravity="center"
+                                android:onClick="onClickPlusButton"
+                                android:text="+" />
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Hole 6"
+                                android:layout_column="4"
+                                android:layout_gravity="center"
+                                />
+                        </TableRow>
+
+                        <TableRow>
+
+                            <Button
+                                android:id="@+id/buttonMinus7"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_column="1"
+                                android:onClick="onClickMinusButton"
+                                android:text="-" />
+
+                            <TextView
+                                android:id="@+id/Score7TW"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_column="2"
+                                android:layout_gravity="center"
+                                android:text="Score" />
+
+                            <Button
+                                android:id="@+id/buttonPlus7"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_column="3"
+                                android:layout_gravity="center"
+                                android:onClick="onClickPlusButton"
+                                android:text="+" />
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Hole 7"
+                                android:layout_column="4"
+                                android:layout_gravity="center"
+                                />
+                        </TableRow>
+
+                        <TableRow>
+
+                            <Button
+                                android:id="@+id/buttonMinus8"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_column="1"
+                                android:onClick="onClickMinusButton"
+                                android:text="-" />
+
+                            <TextView
+                                android:id="@+id/Score8TW"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_column="2"
+                                android:layout_gravity="center"
+                                android:text="Score" />
+
+                            <Button
+                                android:id="@+id/buttonPlus8"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_column="3"
+                                android:layout_gravity="center"
+                                android:onClick="onClickPlusButton"
+                                android:text="+" />
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Hole 8"
+                                android:layout_column="4"
+                                android:layout_gravity="center"
+                                />
+                        </TableRow>
+
+                        <TableRow>
+
+                            <Button
+                                android:id="@+id/buttonMinus9"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_column="1"
+                                android:onClick="onClickMinusButton"
+                                android:text="-" />
+
+                            <TextView
+                                android:id="@+id/Score9TW"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_column="2"
+                                android:layout_gravity="center"
+                                android:text="Score" />
+
+                            <Button
+                                android:id="@+id/buttonPlus9"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_column="3"
+                                android:layout_gravity="center"
+                                android:onClick="onClickPlusButton"
+                                android:text="+" />
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Hole 9"
+                                android:layout_column="4"
+                                android:layout_gravity="center"
+                                />
+                        </TableRow>
+
+                        <TableRow>
+
+                            <Button
+                                android:id="@+id/buttonMinus10"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_column="1"
+                                android:onClick="onClickMinusButton"
+                                android:text="-" />
+
+                            <TextView
+                                android:id="@+id/Score10TW"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_column="2"
+                                android:layout_gravity="center"
+                                android:text="Score" />
+
+                            <Button
+                                android:id="@+id/buttonPlus10"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_column="3"
+                                android:layout_gravity="center"
+                                android:onClick="onClickPlusButton"
+                                android:text="+" />
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Hole 10"
+                                android:layout_column="4"
+                                android:layout_gravity="center"
+                                />
+                        </TableRow>
+
+                        <TableRow>
+
+                            <Button
+                                android:id="@+id/buttonMinus11"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_column="1"
+                                android:onClick="onClickMinusButton"
+                                android:text="-" />
+
+                            <TextView
+                                android:id="@+id/Score11TW"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_column="2"
+                                android:layout_gravity="center"
+                                android:text="Score" />
+
+                            <Button
+                                android:id="@+id/buttonPlus11"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_column="3"
+                                android:layout_gravity="center"
+                                android:onClick="onClickPlusButton"
+                                android:text="+" />
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Hole 11"
+                                android:layout_column="4"
+                                android:layout_gravity="center"
+                                />
+                        </TableRow>
+
+                        <TableRow>
+
+                            <Button
+                                android:id="@+id/buttonMinus12"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_column="1"
+                                android:onClick="onClickMinusButton"
+                                android:text="-" />
+
+                            <TextView
+                                android:id="@+id/Score12TW"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_column="2"
+                                android:layout_gravity="center"
+                                android:text="Score" />
+
+                            <Button
+                                android:id="@+id/buttonPlus12"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_column="3"
+                                android:layout_gravity="center"
+                                android:onClick="onClickPlusButton"
+                                android:text="+" />
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Hole 12"
+                                android:layout_column="4"
+                                android:layout_gravity="center"
+                                />
+                        </TableRow>
+
+                        <TableRow>
+
+                            <Button
+                                android:id="@+id/buttonMinus13"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_column="1"
+                                android:onClick="onClickMinusButton"
+                                android:text="-" />
+
+                            <TextView
+                                android:id="@+id/Score13TW"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_column="2"
+                                android:layout_gravity="center"
+                                android:text="Score" />
+
+                            <Button
+                                android:id="@+id/buttonPlus13"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_column="3"
+                                android:layout_gravity="center"
+                                android:onClick="onClickPlusButton"
+                                android:text="+" />
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Hole 13"
+                                android:layout_column="4"
+                                android:layout_gravity="center"
+                                />
+                        </TableRow>
+
+                        <TableRow>
+
+                            <Button
+                                android:id="@+id/buttonMinus14"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_column="1"
+                                android:onClick="onClickMinusButton"
+                                android:text="-" />
+
+                            <TextView
+                                android:id="@+id/Score14TW"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_column="2"
+                                android:layout_gravity="center"
+                                android:text="Score" />
+
+                            <Button
+                                android:id="@+id/buttonPlus14"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_column="3"
+                                android:layout_gravity="center"
+                                android:onClick="onClickPlusButton"
+                                android:text="+" />
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Hole 14"
+                                android:layout_column="4"
+                                android:layout_gravity="center"
+                                />
+                        </TableRow>
+
+                        <TableRow>
+
+                            <Button
+                                android:id="@+id/buttonMinus15"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_column="1"
+                                android:onClick="onClickMinusButton"
+                                android:text="-" />
+
+                            <TextView
+                                android:id="@+id/Score15TW"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_column="2"
+                                android:layout_gravity="center"
+                                android:text="Score" />
+
+                            <Button
+                                android:id="@+id/buttonPlus15"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_column="3"
+                                android:layout_gravity="center"
+                                android:onClick="onClickPlusButton"
+                                android:text="+" />
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Hole 15"
+                                android:layout_column="4"
+                                android:layout_gravity="center"
+                                />
+                        </TableRow>
+
+                        <TableRow>
+
+                            <Button
+                                android:id="@+id/buttonMinus16"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_column="1"
+                                android:onClick="onClickMinusButton"
+                                android:text="-" />
+
+                            <TextView
+                                android:id="@+id/Score16TW"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_column="2"
+                                android:layout_gravity="center"
+                                android:text="Score" />
+
+                            <Button
+                                android:id="@+id/buttonPlus16"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_column="3"
+                                android:layout_gravity="center"
+                                android:onClick="onClickPlusButton"
+                                android:text="+" />
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Hole 16"
+                                android:layout_column="4"
+                                android:layout_gravity="center"
+                                />
+                        </TableRow>
+
+                        <TableRow>
+
+                            <Button
+                                android:id="@+id/buttonMinus17"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_column="1"
+                                android:onClick="onClickMinusButton"
+                                android:text="-" />
+
+                            <TextView
+                                android:id="@+id/Score17TW"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_column="2"
+                                android:layout_gravity="center"
+                                android:text="Score" />
+
+                            <Button
+                                android:id="@+id/buttonPlus17"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_column="3"
+                                android:layout_gravity="center"
+                                android:onClick="onClickPlusButton"
+                                android:text="+" />
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Hole 17"
+                                android:layout_column="4"
+                                android:layout_gravity="center"
+                                />
+                        </TableRow>
+
+                        <TableRow>
+
+                            <Button
+                                android:id="@+id/buttonMinus18"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_column="1"
+                                android:onClick="onClickMinusButton"
+                                android:text="-" />
+
+                            <TextView
+                                android:id="@+id/Score18TW"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_column="2"
+                                android:layout_gravity="center"
+                                android:text="Score" />
+
+                            <Button
+                                android:id="@+id/buttonPlus18"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_column="3"
+                                android:layout_gravity="center"
+                                android:onClick="onClickPlusButton"
+                                android:text="+" />
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Hole 18"
+                                android:layout_column="4"
+                                android:layout_gravity="center"
+                                />
+                        </TableRow>
+                        <TableRow>
+                            <Button
+                                android:id="@+id/saveButton"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_column="1"
+                                android:layout_gravity="center_horizontal"
+                                android:onClick="calculateTotal"
+                                android:text="Calculate" />
+                            <Button
+                                android:id="@+id/menuButton"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_column="2"
+                                android:layout_gravity="center_horizontal"
+                                android:onClick="menuActivity"
+                                android:text="Menu" />
+                        </TableRow>
+
+                    </TableLayout>
+                </LinearLayout>
+            </ScrollView>
+        </RelativeLayout>
+
+    </ViewSwitcher>
+
+</android.support.constraint.ConstraintLayout>

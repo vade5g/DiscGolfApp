@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".AddPlayerActivity">
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <TableRow>
+            <TextView
+                android:id="@+id/textView2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Add new player"
+                android:layout_column="2"
+                />
+        </TableRow>
+        <TableRow>
+            <EditText
+                android:id="@+id/newPlayerET"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_column="2"
+                />
+        </TableRow>
+        <TableRow>
+                <Button
+                    android:id="@+id/savePlayerButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_column="2"
+                    android:layout_gravity="center_horizontal"
+                    android:onClick="savePlayer"
+                    android:text="Save" />
+                <Button
+                    android:id="@+id/menuButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_column="3"
+                    android:layout_gravity="center_horizontal"
+                    android:onClick="menuActivity"
+                    android:text="Menu" />
+        </TableRow>
+
+
+    </TableLayout>
+
+
+
+
+</android.support.constraint.ConstraintLayout>

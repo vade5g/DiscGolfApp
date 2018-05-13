@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MenuActivity">
+
+    <Button
+        android:id="@+id/buttonNewGame"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="14dp"
+        android:layout_marginEnd="155dp"
+        android:layout_marginLeft="132dp"
+        android:layout_marginRight="155dp"
+        android:layout_marginStart="132dp"
+        android:layout_marginTop="113dp"
+        android:onClick="gameActivity"
+        android:text="New Game"
+        app:layout_constraintBottom_toTopOf="@+id/buttonCourses"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/buttonCourses"
+        android:layout_width="97dp"
+        android:layout_height="49dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="155dp"
+        android:layout_marginLeft="132dp"
+        android:layout_marginRight="155dp"
+        android:layout_marginStart="132dp"
+        android:layout_marginTop="14dp"
+        android:text="Courses"
+        app:layout_constraintBottom_toTopOf="@+id/buttonPlayers"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/buttonNewGame"
+        android:onClick="coursesActivity"
+        />
+
+    <Button
+        android:id="@+id/buttonPlayers"
+        android:layout_width="97dp"
+        android:layout_height="48dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="155dp"
+        android:layout_marginLeft="132dp"
+        android:layout_marginRight="155dp"
+        android:layout_marginStart="132dp"
+        android:layout_marginTop="8dp"
+        android:text="Players"
+        app:layout_constraintBottom_toTopOf="@+id/buttonGames"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/buttonCourses"
+        android:onClick="playersActivity"
+        />
+
+    <Button
+        android:id="@+id/buttonGames"
+        android:layout_width="97dp"
+        android:layout_height="48dp"
+        android:layout_marginEnd="155dp"
+        android:layout_marginLeft="132dp"
+        android:layout_marginRight="155dp"
+        android:layout_marginStart="132dp"
+        android:layout_marginTop="8dp"
+        android:text="Games"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/buttonPlayers"
+        android:onClick="gamesActivity"
+        />
+</android.support.constraint.ConstraintLayout>

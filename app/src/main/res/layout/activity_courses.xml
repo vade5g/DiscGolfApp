@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".CoursesActivity">
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <TableRow>
+            <TextView
+                android:layout_column="1"
+                android:text="List of Courses"
+
+                />
+        </TableRow>
+
+        <TableRow>
+            <EditText
+                android:id="@+id/courseNameET"
+                android:layout_column="1"
+                android:text="Course name"
+                android:layout_gravity="left"
+                />
+            <Button
+                android:id="@+id/searchCourseButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_column="2"
+                android:layout_gravity="center_horizontal"
+                android:text="Search"
+                android:onClick="searchCourse"
+                />
+
+            <Button
+                android:id="@+id/addButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_column="3"
+                android:layout_gravity="center_horizontal"
+                android:onClick="addNew"
+                android:text="Add new"
+                />
+            <Button
+                android:id="@+id/menuButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_column="3"
+                android:layout_gravity="center_horizontal"
+                android:onClick="menuActivity"
+                android:text="Menu"
+                />
+
+
+        </TableRow>
+        <TableRow>
+            <ListView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                tools:layout_editor_absoluteX="8dp"
+                tools:layout_editor_absoluteY="8dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_column="1"
+                android:id="@+id/coursesList"
+                />
+        </TableRow>
+
+
+    </TableLayout>
+
+
+</android.support.constraint.ConstraintLayout>
