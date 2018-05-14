@@ -27,7 +27,7 @@ public class LoadingActivity extends AppCompatActivity {
             public void run() {
                 try {
                     super.run();
-                    sleep(3500);  //Delay of 5 seconds
+                    sleep(3500);  //Delay of 3,5 seconds
                 } catch (Exception e) {
 
                 } finally {

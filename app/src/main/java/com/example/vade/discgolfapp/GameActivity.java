@@ -23,9 +23,6 @@ import java.util.Scanner;
 
 public class GameActivity extends AppCompatActivity {
     private TextView testTextView;
-    private static List<player> players;
-    private static List<game> games;
-    private static List<course> courses;
 
     private static Map<Integer, Integer> idPlusMap = new HashMap<Integer, Integer>();
     private static Map<Integer, Integer> idMinusMap = new HashMap<Integer, Integer>();
@@ -34,8 +31,6 @@ public class GameActivity extends AppCompatActivity {
     private AppDatabase mDb;
 
     public int totalScore;
-    public player activePlayer;
-    public course activeCourse;
     public List<Integer> activeScore = new ArrayList<>();
     private EditText courseNameET;
 
@@ -44,7 +39,6 @@ public class GameActivity extends AppCompatActivity {
     private Spinner spinnerCourse;
 
     private ViewSwitcher switcher;
-    private static final int REFRESH_SCREEN = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -231,7 +225,7 @@ public class GameActivity extends AppCompatActivity {
             sb.append(String.format(Locale.US,
                     "%s, %s (%d)\n", proPlayer.name, proPlayer.gamesPlayed, proPlayer.bestScore));
         }
-        */
+
         //Getting course by name from db and creating an object of it.
         Course dbCourse = mDb.courseModel().findCourseByName("Tali");
         Scanner scanner = new Scanner(dbCourse.holes);
@@ -248,7 +242,7 @@ public class GameActivity extends AppCompatActivity {
         //Set best Score for the player from the DB
         activePlayer.setBestScore(dbPlayer.bestScore);
 
-        /*
+
         String testString = activeCourse.getHoles().toString();
         testTextView.setText(activeCourse.getName()+ " " + activeCourse.getParScore());
 

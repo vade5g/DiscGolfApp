@@ -24,9 +24,6 @@ import java.util.Scanner;
 public class MainActivity extends AppCompatActivity {
 
     private TextView testTextView;
-    private static List<player> players;
-    private static List<game> games;
-    private static List<course> courses;
 
     private static Map<Integer, Integer> idPlusMap = new HashMap<Integer, Integer>();
     private static Map<Integer, Integer> idMinusMap = new HashMap<Integer, Integer>();
@@ -35,8 +32,6 @@ public class MainActivity extends AppCompatActivity {
     private AppDatabase mDb;
 
     public int totalScore;
-    public player activePlayer;
-    public course activeCourse;
     public List<Integer> activeScore = new ArrayList<>();
     private EditText courseNameET;
 
@@ -168,6 +163,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void fetchData() {
         // Note: this kind of logic should not be in an activity.
+        /*
         StringBuilder sb = new StringBuilder();
         List<Player> proPlayers = mDb.playerModel().findYoungerThan(3099);
         for (Player proPlayer : proPlayers) {
@@ -191,7 +187,7 @@ public class MainActivity extends AppCompatActivity {
         //Set best Score for the player from the DB
         activePlayer.setBestScore(dbPlayer.bestScore);
 
-        /*
+
         String testString = activeCourse.getHoles().toString();
         testTextView.setText(activeCourse.getName()+ " " + activeCourse.getParScore());
 
@@ -205,7 +201,7 @@ public class MainActivity extends AppCompatActivity {
             calculateTotal(v);
             String id = courseNameET.getText().toString() + totalScore;
             String courseName = courseNameET.getText().toString();
-            course courseToBeSaved = new course(id,courseName,totalScore,18,activeScore);
+            //course courseToBeSaved = new course(id,courseName,totalScore,18,activeScore);
             String holesString = TextUtils.join(" ", activeScore);
             DatabaseInitializer.addCourse(mDb,id,courseName,18,totalScore,holesString);
             //testTextView.setText(id+ ", "+courseName+ ", " +18+ ", "+totalScore+ ", "+holesString);
